@@ -1,4 +1,4 @@
-TOKEN = '7095597855:AAEwkWdxvEoNq2jRSLy6fIMv17P9GSIEa1Y'
+TOKEN = "7947049494:AAGePIxSZgfSF183_z-42cUYI-KHnmFpPn4"
 import asyncio
 import re
 import logging
@@ -11,6 +11,7 @@ API_MESSAGE_URL = "http://127.0.0.1:8000/api/save_message/"
 
 bot = Bot(token=TOKEN, parse_mode="HTML")
 dp = Dispatcher(bot)  # <--- BU YERDA BOT ARGUMENTINI KIRITDIK
+
 
 # Domenlar ro‘yxatini olish uchun funksiya
 async def get_domains():
@@ -29,7 +30,7 @@ async def check_message(message: types.Message):
     user = message.from_user
     chat = message.chat
     message_text = message.text or ""
-    
+
     # Domenni tekshirish
     found_domain = None
     for domain in domains:
@@ -46,17 +47,11 @@ async def check_message(message: types.Message):
     # Agar domen yoki .apk fayl bo‘lsa, API-ga yuborish va foydalanuvchiga javob berish
     if found_domain or file_type:
         data = {
-            "user": {
-                "telegram_id": user.id,
-                "username": user.username
-            },
-            "group": {
-                "chat_id": chat.id,
-                "title": chat.title
-            },
+            "user": {"telegram_id": user.id, "username": user.username},
+            "group": {"chat_id": chat.id, "title": chat.title},
             "message_id": message.message_id,
             "text": message_text if found_domain else "",
-            "file_type": file_type
+            "file_type": file_type,
         }
 
         async with aiohttp.ClientSession() as session:
@@ -67,6 +62,8 @@ async def check_message(message: types.Message):
         # Foydalanuvchiga ogohlantirish xabari yuborish
         warning_message = "⚠️ Iltimos, bu faylni ochmang yoki ushbu havolaga kirmang! U xavfli bo'lishi mumkin."
         await message.reply(warning_message)  # <-- Foydalanuvchiga javob xabar yuborish
+
+
 # Guruhga qo‘shilganda ishlovchi event
 @dp.chat_member_handler()  # <--- BU YERDA @dp.chat_member() O'RNIGA @dp.chat_member_handler() ISHLATILDI
 async def on_group_addition(update: ChatMemberUpdated):
@@ -74,9 +71,11 @@ async def on_group_addition(update: ChatMemberUpdated):
         chat = update.chat
         logging.info(f"Bot added to group: {chat.title}")
 
+
 # Botni ishga tushirish
 async def main():
     await dp.start_polling()
+
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)

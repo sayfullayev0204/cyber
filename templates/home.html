@@ -59,10 +59,10 @@
         <div class="sidebar-wrapper scrollbar scrollbar-inner">
           <div class="sidebar-content">
             <ul class="nav nav-secondary">
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a
                   href="{% url 'home' %}"
-                  class="collapsed active"
+                  class="collapsed"
                   aria-expanded="false"
                 >
                   <i class="bi bi-house"></i>
@@ -106,7 +106,7 @@
                   class="collapsed"
                 >
                   <i class="bi bi-x-circle"></i>
-                  <p>Shubxali xabarlar</p>
+                  <p>Shubhali xabarlar</p>
                 </a>
               </li>
               {% endif %}
@@ -262,7 +262,7 @@
                 {% if user.role == "superuser" or user.role %}
                 <a href="{% url 'edit_bot' %}" class="btn btn-label-info btn-round me-2">Bot tokeni</a>
                 <a href="{% url 'add_domain' %}" class="btn btn-label-info btn-round me-2">Domain qo'shish</a>
-
+                <a href="{% url 'show_non_admin_groups' %}" class="btn btn-label-info btn-round me-2">Guruhlarni tekshirish</a>
                 {% endif %}
               </div>
             </div>
@@ -275,13 +275,13 @@
                         <div
                           class="icon-big text-center icon-primary bubble-shadow-small"
                         >
-                          <i class="fas fa-users"></i>
+                          <i class="fas fa-users">{{gorup_count}}</i>
                         </div>
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
                         <div class="numbers">
-                          <p class="card-category">Visitors</p>
-                          <h4 class="card-title">1,294</h4>
+                          <p class="card-category">Guruhlar</p>
+                          <h4 class="card-title">soni</h4>
                         </div>
                       </div>
                     </div>
@@ -296,13 +296,13 @@
                         <div
                           class="icon-big text-center icon-info bubble-shadow-small"
                         >
-                          <i class="fas fa-user-check"></i>
+                          <i class="fas fa-user-check">{{scheduled_messages_count}}</i>
                         </div>
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
                         <div class="numbers">
-                          <p class="card-category">Subscribers</p>
-                          <h4 class="card-title">1303</h4>
+                          <p class="card-category">Xabar</p>
+                          <h4 class="card-title">soni</h4>
                         </div>
                       </div>
                     </div>
@@ -317,13 +317,13 @@
                         <div
                           class="icon-big text-center icon-success bubble-shadow-small"
                         >
-                          <i class="fas fa-luggage-cart"></i>
+                          <i class="fas fa-luggage-cart">{{telegrammessages}}</i>
                         </div>
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
                         <div class="numbers">
-                          <p class="card-category">Sales</p>
-                          <h4 class="card-title">$ 1,345</h4>
+                          <p class="card-category">Shubhali xabarlar</p>
+                          <h4 class="card-title">soni</h4>
                         </div>
                       </div>
                     </div>
@@ -336,15 +336,15 @@
                     <div class="row align-items-center">
                       <div class="col-icon">
                         <div
-                          class="icon-big text-center icon-secondary bubble-shadow-small"
+                          class="icon-big text-center icon-info bubble-shadow-small" style="background-color: rgb(195, 236, 60);"
                         >
-                          <i class="far fa-check-circle"></i>
+                          <i class="fas fa-user-check">{{send_messages}}</i>
                         </div>
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
                         <div class="numbers">
-                          <p class="card-category">Order</p>
-                          <h4 class="card-title">576</h4>
+                          <p class="card-category">Yuborilgan xabarlar</p>
+                          <h4 class="card-title">soni</h4>
                         </div>
                       </div>
                     </div>

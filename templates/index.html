@@ -85,7 +85,7 @@
                 </a>
               </li>
 
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a
                   href="{% url 'send_message_page' %}"
                   class="collapsed"
@@ -111,7 +111,7 @@
                   class="collapsed"
                 >
                   <i class="bi bi-x-circle"></i>
-                  <p>Shubxali xabarlar</p>
+                  <p>Shubhali xabarlar</p>
                 </a>
               </li>
               {% endif %}
@@ -316,15 +316,15 @@
                                 <option value="weekly">Haftalik</option>
                             </select>
                         </div>
-                
+
                         <!-- KUNLIK TAKRORIY XABARLAR -->
                         <div id="repedlyDailyInput" class="hidden">
                             <label for="startDate" class="form-label">Boshlanish kuni:</label>
                             <input type="date" id="startDate" name="start_day" class="form-control mb-2">
                             <label for="endDate" class="form-label">Tugash kuni:</label>
                             <input type="date" id="endDate" name="end_day" class="form-control mb-2">
-                            <label for="startTime" class="form-label">Vaqti:</label>
-                            <input type="time" id="startTime" name="repetly_time" class="form-control">
+                            <label for="weeklyTime" class="form-label mt-2">Vaqti:</label>
+                            <input type="time" id="weeklyTime" name="weekly_repetly_time" class="form-control">
                         </div>
                 
                         <!-- HAFTALIK TAKRORIY XABARLAR -->
@@ -342,6 +342,7 @@
                 
                         <div class="mb-3">
                           <label class="form-label">Guruhni tanlang:</label>
+                          <button type="button" id="select-all" class="btn btn-primary btn-sm mb-2">Barchasi</button>
                           {% for group in groups %}
                               <div class="form-check">
                                   <input type="checkbox" name="group_ids" value="{{ group.group_id }}" id="group_{{ group.id }}" class="form-check-input">
@@ -349,6 +350,18 @@
                               </div>
                           {% endfor %}
                       </div>
+                      
+                      <script>
+                          document.getElementById('select-all').addEventListener('click', function () {
+                              let checkboxes = document.querySelectorAll('input[name="group_ids"]');
+                              let allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+                              
+                              checkboxes.forEach(checkbox => checkbox.checked = !allChecked);
+                      
+                              // Tugma matnini o'zgartirish
+                              this.textContent = allChecked ? "Barchasi" : "Barchasini bekor qilish";
+                          });
+                      </script>
                 
                         <button type="submit" class="btn btn-primary w-100">Tasdiqlash</button>
                     </form>

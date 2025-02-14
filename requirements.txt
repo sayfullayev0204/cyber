@@ -8,3 +8,4 @@ whitenoise==6.8.2
 redis==5.2.0
 gunicorn==21.2.0
 pytz==2025.1
+django-cors-headers==4.3.1

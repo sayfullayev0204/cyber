@@ -70,7 +70,7 @@
                 </a>
               </li>
               {% if user.role == 'superuser' or user.role == "postmaker" %}
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a
                   href="{% url 'list' %}"
                   class="collapsed"
@@ -106,7 +106,7 @@
                   class="collapsed"
                 >
                   <i class="bi bi-x-circle"></i>
-                  <p>Shubxali xabarlar</p>
+                  <p>Shubhali xabarlar</p>
                 </a>
               </li>
               {% endif %}
