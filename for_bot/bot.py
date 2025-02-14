@@ -22,6 +22,25 @@ async def get_domains():
                 return [d for d in data]
     return []
 
+@dp.message_handler(commands=['start'])
+async def send_welcome_video(message: types.Message):
+    caption_text = (
+        "📢 *Kibertarg'ibot yordamchi boti*🔒\n\n"
+        "👋 Salom, men *Kibertarg'ibot yordamchi boti*!\n\n"
+        "💻 Internetdagi xavflardan himoyalanish va ogoh bo‘lish uchun shu yerdaman!\n\n"
+        "⚠️ *Kiberhujumlar*, 🎭 *kiberfiribgarlik*, 🔑 *Kartadan pullar yechilishi* va "
+        "boshqa xavflardan xabardor bo‘lishni xohlaysizmi?\n\n"
+        "💡 Men sizga foydali maslahatlar, ogohlantirishlar va yangiliklarni yetkazib beraman!\n"
+        "✅ *Guruhga admin qilib qo‘ysangiz, avtomatik ravishda himoya xabarlari yuboraman!*\n"
+        "🛡 *Men bilan xavfsizlikni mustahkamlang!*"
+    )
+
+    await bot.send_video(
+        chat_id=message.chat.id,
+        caption=caption_text,
+        parse_mode="Markdown"
+    )
+
 
 # Xabarlarni tekshirish uchun handler
 @dp.message_handler()  # Xabarlarni qayta ishlash uchun handler
